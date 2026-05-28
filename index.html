@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortener Pro & Store | Formula APK</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .gradient-bg { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); }
+        
+        /* Animação do Banner de Destaque */
+        #highlight-container { transition: all 0.5s ease-in-out; }
+        .fade-in-right { animation: fadeInRight 0.6s ease-out forwards; }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body class="gradient-bg text-slate-800 min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="bg-indigo-600 text-white p-2 rounded-lg font-bold text-xl">F</div>
+                <span class="font-extrabold text-xl tracking-tight uppercase">Formula <span class="text-indigo-600">APK</span></span>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-sm font-bold text-slate-600 uppercase tracking-wider">
+                <a href="#ferramenta" class="hover:text-indigo-600">Encurtador</a>
+                <a href="#instrucoes" class="hover:text-indigo-600">Como Usar</a>
+                <a href="#loja" class="hover:text-indigo-600">Loja</a>
+                <a href="https://youtube.com/@formulaapk" target="_blank" class="hover:text-indigo-600">YouTube</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção 1: Encurtador -->
+        <section id="ferramenta" class="max-w-4xl mx-auto px-6 py-12 md:py-16">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
+                    Encurte seus links com <span class="text-indigo-600">profissionalismo.</span>
+                </h1>
+                <p class="text-lg text-slate-600">Links curtos e personalizados para seus grupos e redes sociais.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 p-8 md:p-10 border border-slate-100">
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2 tracking-wide">Link Original</label>
+                        <input type="url" id="longUrl" placeholder="Cole o link original aqui..." 
+                            class="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2 tracking-wide">Final do Link (Personalizado)</label>
+                        <div class="flex items-center bg-slate-50 rounded-xl border border-slate-200 px-5 focus-within:ring-4 focus-within:ring-indigo-100 transition-all">
+                            <span class="text-slate-400 font-medium pr-3 border-r border-slate-200">da.gd/</span>
+                            <input type="text" id="customSlug" placeholder="ex: oferta-imperdivel" 
+                                class="bg-transparent py-4 px-3 outline-none text-slate-700 w-full">
+                        </div>
+                    </div>
+
+                    <button id="btnShorten" onclick="shortenUrl()" 
+                        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg flex items-center justify-center space-x-3 transform active:scale-[0.98]">
+                        <span id="btnText" class="text-lg uppercase">Gerar Link Curto</span>
+                        <div id="loader" class="hidden animate-spin rounded-full h-6 w-6 border-4 border-white/30 border-t-white"></div>
+                    </button>
+
+                    <div id="resultArea" class="hidden space-y-4 pt-8 border-t border-slate-100 animate-in fade-in duration-500">
+                        <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3">
+                            <input type="text" id="shortUrl" readonly 
+                                class="w-full px-5 py-4 rounded-xl bg-indigo-50 border border-indigo-100 text-indigo-700 font-bold text-lg text-center">
+                            <button onclick="copyToClipboard()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-md">
+                                COPIAR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Destaque Largura Total (Banner Dinâmico) -->
+        <div class="w-full bg-indigo-600 py-6 mb-16 shadow-inner overflow-hidden">
+            <div class="max-w-6xl mx-auto px-6">
+                <div id="highlight-container" class="flex items-center justify-between">
+                    <!-- Conteúdo inserido via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 2: Como Usar e Funções -->
+        <section id="instrucoes" class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 mb-24 py-12 border-t border-slate-200">
+            <div>
+                <h2 class="text-2xl font-extrabold text-slate-900 mb-6">Como usar a ferramenta?</h2>
+                <ul class="space-y-6">
+                    <li class="flex items-start space-x-4">
+                        <div class="bg-indigo-100 text-indigo-600 rounded-full h-8 w-8 flex items-center justify-center font-bold shrink-0">1</div>
+                        <p class="text-slate-600 leading-relaxed"><span class="font-bold text-slate-900">Insira o Link:</span> Cole a URL longa que você deseja encurtar.</p>
+                    </li>
+                    <li class="flex items-start space-x-4">
+                        <div class="bg-indigo-100 text-indigo-600 rounded-full h-8 w-8 flex items-center justify-center font-bold shrink-0">2</div>
+                        <p class="text-slate-600 leading-relaxed"><span class="font-bold text-slate-900">Personalize:</span> Escolha um nome exclusivo para o final do link.</p>
+                    </li>
+                    <li class="flex items-start space-x-4">
+                        <div class="bg-indigo-100 text-indigo-600 rounded-full h-8 w-8 flex items-center justify-center font-bold shrink-0">3</div>
+                        <p class="text-slate-600 leading-relaxed"><span class="font-bold text-slate-900">Copie:</span> Gere o link e compartilhe onde quiser.</p>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="text-2xl font-extrabold text-slate-900 mb-6">O que você pode fazer?</h2>
+                <div class="space-y-4">
+                    <div class="p-5 bg-white rounded-2xl border border-slate-100 shadow-sm">
+                        <h3 class="font-bold text-indigo-600 mb-1 italic">Encurtamento Instantâneo</h3>
+                        <p class="text-sm text-slate-600">Reduza links gigantes para URLs de poucos caracteres em um clique.</p>
+                    </div>
+                    <div class="p-5 bg-white rounded-2xl border border-slate-100 shadow-sm">
+                        <h3 class="font-bold text-indigo-600 mb-1 italic">Customização de Links</h3>
+                        <p class="text-sm text-slate-600">Crie URLs amigáveis com sua marca ou nome do produto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 3: Vitrine Completa -->
+        <section id="loja" class="max-w-6xl mx-auto px-6 py-12 border-t border-slate-200">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-slate-900 mb-2">Produtos Recomendados</h2>
+                <p class="text-slate-600">As melhores ofertas escolhidas pelo Formula APK</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Produto 1: Fone Pro -->
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col group text-center">
+                    <div class="h-64 bg-slate-50 p-6 flex items-center justify-center">
+                        <img src="https://http2.mlstatic.com/D_Q_NP_2X_653869-MLA106986107684_022026-V.webp" class="max-h-full group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-slate-800 text-sm mb-2 h-10 overflow-hidden">Fone Bluetooth 5.4 Pro Phone</h3>
+                        <p class="text-[10px] text-slate-500 mb-2 uppercase font-bold">Premium Sound</p>
+                        <p class="text-lg font-extrabold text-indigo-600 mb-4">R$ 189,90</p>
+                        <a href="https://meli.la/1RqzRZx" target="_blank" class="mt-auto block w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-indigo-600 transition-colors text-xs uppercase">Ver Oferta</a>
+                    </div>
+                </div>
+
+                <!-- Produto 2: JBL Quantum -->
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col group text-center">
+                    <div class="h-64 bg-slate-50 p-6 flex items-center justify-center">
+                        <img src="https://http2.mlstatic.com/D_Q_NP_2X_611033-MLA99500239200_112025-V.webp" class="max-h-full group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-slate-800 text-sm mb-2 h-10 overflow-hidden">Headset Gamer JBL Quantum 400</h3>
+                        <p class="text-[10px] text-slate-500 mb-2 uppercase font-bold">Gaming Audio</p>
+                        <p class="text-lg font-extrabold text-indigo-600 mb-4">R$ 449,00</p>
+                        <a href="https://meli.la/2DGuZcr" target="_blank" class="mt-auto block w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-indigo-600 transition-colors text-xs uppercase">Ver Oferta</a>
+                    </div>
+                </div>
+
+                <!-- Produto 3: Nubwo -->
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col group text-center">
+                    <div class="h-64 bg-slate-50 p-6 flex items-center justify-center">
+                        <img src="https://http2.mlstatic.com/D_Q_NP_2X_827681-MLB93449239349_092025-V-wireless-headset-nubwo-g06-fone-gamer-24ghz-usb-bluetooth.webp" class="max-h-full group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-slate-800 text-sm mb-2 h-10 overflow-hidden">Headset Nubwo G06 Wireless</h3>
+                        <p class="text-[10px] text-slate-500 mb-2 uppercase font-bold">2.4GHz & BT</p>
+                        <p class="text-lg font-extrabold text-indigo-600 mb-4">R$ 299,00</p>
+                        <a href="https://meli.la/1eyzSV3" target="_blank" class="mt-auto block w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-indigo-600 transition-colors text-xs uppercase">Ver Oferta</a>
+                    </div>
+                </div>
+
+                <!-- Produto 4: Fallen Morcego -->
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col group text-center">
+                    <div class="h-64 bg-slate-50 p-6 flex items-center justify-center">
+                        <img src="https://http2.mlstatic.com/D_Q_NP_2X_870724-MLA81633713501_122024-V.webp" class="max-h-full group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-slate-800 text-sm mb-2 h-10 overflow-hidden">Headset Gamer Fallen Morcego Pro</h3>
+                        <p class="text-[10px] text-slate-500 mb-2 uppercase font-bold">Pro 7.1 Wireless</p>
+                        <p class="text-lg font-extrabold text-indigo-600 mb-4">R$ 529,00</p>
+                        <a href="https://meli.la/1uJjZnx" target="_blank" class="mt-auto block w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-indigo-600 transition-colors text-xs uppercase">Ver Oferta</a>
+                    </div>
+                </div>
+
+                <!-- Produto 5: Galaxy S25 -->
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col group text-center">
+                    <div class="h-64 bg-slate-50 p-6 flex items-center justify-center">
+                        <img src="https://http2.mlstatic.com/D_Q_NP_2X_839006-MLA100007826225_122025-V.webp" class="max-h-full group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-slate-800 text-sm mb-2 h-10 overflow-hidden">Samsung Galaxy S25 5G 256GB</h3>
+                        <p class="text-[10px] text-slate-500 mb-2 uppercase font-bold">12GB RAM | Galaxy AI</p>
+                        <p class="text-lg font-extrabold text-indigo-600 mb-4">R$ 3.589,00</p>
+                        <a href="https://meli.la/2rW3F7y" target="_blank" class="mt-auto block w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-indigo-600 transition-colors text-xs uppercase">Ver Oferta</a>
+                    </div>
+                </div>
+
+                <!-- Produto 6: Galaxy S25 FE -->
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col group text-center">
+                    <div class="h-64 bg-slate-50 p-6 flex items-center justify-center">
+                        <img src="https://http2.mlstatic.com/D_Q_NP_2X_840870-MLA96785958150_112025-V.webp" class="max-h-full group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-slate-800 text-sm mb-2 h-10 overflow-hidden">Samsung Galaxy S25 FE 5G</h3>
+                        <p class="text-[10px] text-slate-500 mb-2 uppercase font-bold">128GB | Tela 6.7"</p>
+                        <p class="text-lg font-extrabold text-indigo-600 mb-4">R$ 2.379,00</p>
+                        <a href="https://meli.la/13FdkTh" target="_blank" class="mt-auto block w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-indigo-600 transition-colors text-xs uppercase">Ver Oferta</a>
+                    </div>
+                </div>
+
+                <!-- Produto 7: Motorola Edge 60 Fusion -->
+                <div class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col group text-center">
+                    <div class="h-64 bg-slate-50 p-6 flex items-center justify-center">
+                        <img src="https://http2.mlstatic.com/D_Q_NP_2X_908302-MLA99985086463_112025-V.webp" class="max-h-full group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-slate-800 text-sm mb-2 h-10 overflow-hidden">Motorola Edge 60 Fusion 5G</h3>
+                        <p class="text-[10px] text-slate-500 mb-2 uppercase font-bold">256GB | 24GB Boost</p>
+                        <p class="text-lg font-extrabold text-indigo-600 mb-4">R$ 1.799,00</p>
+                        <a href="https://meli.la/1btceMH" target="_blank" class="mt-auto block w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-indigo-600 transition-colors text-xs uppercase">Ver Oferta</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-12 text-center px-6">
+        <p class="text-slate-400 text-xs font-bold uppercase tracking-[0.3em] mb-4">Formula APK & Zapia</p>
+    </footer>
+
+    <script>
+        // Função Encurtador
+        async function shortenUrl() {
+            const longUrlInput = document.getElementById('longUrl');
+            const slugInput = document.getElementById('customSlug');
+            let longUrl = longUrlInput.value.trim();
+            let slug = slugInput.value.trim();
+            const btn = document.getElementById('btnShorten');
+            const btnText = document.getElementById('btnText');
+            const loader = document.getElementById('loader');
+            const resultArea = document.getElementById('resultArea');
+            const shortUrlInput = document.getElementById('shortUrl');
+
+            if (!longUrl) return;
+            if (!longUrl.startsWith('http')) longUrl = 'https://' + longUrl;
+
+            btnText.classList.add('opacity-0');
+            loader.classList.remove('hidden');
+            btn.disabled = true;
+
+            try {
+                let apiUrl = `https://da.gd/s?url=${encodeURIComponent(longUrl)}`;
+                if (slug) apiUrl += `&shorturl=${encodeURIComponent(slug)}`;
+                const response = await fetch(apiUrl);
+                const data = await response.text();
+                if (response.ok) {
+                    shortUrlInput.value = data.trim();
+                    resultArea.classList.remove('hidden');
+                } else { alert("Nome em uso!"); }
+            } catch (e) { alert("Erro de conexão."); }
+            finally {
+                btnText.classList.remove('opacity-0');
+                loader.classList.add('hidden');
+                btn.disabled = false;
+            }
+        }
+
+        function copyToClipboard() {
+            const copyText = document.getElementById("shortUrl");
+            copyText.select();
+            navigator.clipboard.writeText(copyText.value);
+            alert("Copiado!");
+        }
+
+        // Lógica do Banner de Destaque
+        const highlightProducts = [
+            { name: "Samsung Galaxy S25 5G", link: "https://meli.la/2rW3F7y", img: "https://http2.mlstatic.com/D_Q_NP_2X_839006-MLA100007826225_122025-V.webp" },
+            { name: "Motorola Edge 60 Fusion", link: "https://meli.la/1btceMH", img: "https://http2.mlstatic.com/D_Q_NP_2X_908302-MLA99985086463_112025-V.webp" },
+            { name: "Samsung Galaxy S25 FE", link: "https://meli.la/13FdkTh", img: "https://http2.mlstatic.com/D_Q_NP_2X_840870-MLA96785958150_112025-V.webp" },
+            { name: "Fone Bluetooth 5.4 Pro", link: "https://meli.la/1RqzRZx", img: "https://http2.mlstatic.com/D_Q_NP_2X_653869-MLA106986107684_022026-V.webp" }
+        ];
+
+        let currentIdx = 0;
+
+        function showHighlight() {
+            const container = document.getElementById('highlight-container');
+            const prod = highlightProducts[currentIdx];
+
+            container.innerHTML = `
+                <div class="flex flex-col md:flex-row items-center justify-between w-full fade-in-right">
+                    <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                        <div class="bg-white rounded-xl p-1 h-14 w-14">
+                            <img src="${prod.img}" class="h-full w-full object-contain">
+                        </div>
+                        <div>
+                            <p class="text-white font-extrabold text-lg md:text-xl leading-tight">${prod.name}</p>
+                            <p class="text-indigo-200 text-xs font-bold uppercase tracking-widest italic">Lançamento em destaque</p>
+                        </div>
+                    </div>
+                    <a href="${prod.link}" target="_blank" class="bg-white text-indigo-600 font-black px-10 py-3 rounded-2xl hover:bg-slate-100 transition-all uppercase text-sm shadow-lg">
+                        Ver Promoção
+                    </a>
+                </div>
+            `;
+
+            currentIdx = (currentIdx + 1) % highlightProducts.length;
+        }
+
+        showHighlight();
+        setInterval(showHighlight, 6000);
+    </script>
+</body>
+</html>
