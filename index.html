@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shortener Pro & Store | Formula APK</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Biblioteca de Confetes (Link Verificado via JSDelivr) -->
+    <!-- Biblioteca de Confetes -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
@@ -42,7 +42,6 @@
             <nav class="hidden md:flex space-x-6 text-sm font-bold text-slate-600 uppercase tracking-wider">
                 <a href="#ferramenta" class="hover:text-indigo-600">Encurtador</a>
                 <a href="#instrucoes" class="hover:text-indigo-600">Como Usar</a>
-                <a href="#loja" class="hover:text-indigo-600">Loja</a>
                 <a href="https://youtube.com/@formulaapk" target="_blank" class="hover:text-indigo-600">YouTube</a>
             </nav>
         </div>
@@ -94,7 +93,7 @@
             </div>
         </section>
 
-        <!-- Banner Dinâmico -->
+        <!-- Banner Dinâmico de Destaque -->
         <div class="w-full bg-indigo-600 py-6 mb-16 shadow-inner overflow-hidden">
             <div class="max-w-6xl mx-auto px-6">
                 <div id="highlight-container" class="flex items-center justify-between"></div>
@@ -134,55 +133,9 @@
                 </div>
             </div>
         </section>
-
-        <!-- Vitrine Completa -->
-        <section id="loja" class="max-w-6xl mx-auto px-6 py-12 border-t border-slate-200">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-slate-900 mb-2">Produtos Recomendados</h2>
-                <p class="text-slate-600">As melhores ofertas escolhidas pelo Formula APK</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Produto 1 -->
-                <div class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col group">
-                    <div class="h-64 bg-slate-50 p-6 flex items-center justify-center">
-                        <img src="https://http2.mlstatic.com/D_Q_NP_2X_653869-MLA106986107684_022026-V.webp" class="max-h-full group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="font-bold text-slate-800 text-sm mb-2 h-10 overflow-hidden leading-tight">Fone Bluetooth 5.4 Estojo Pro Phone</h3>
-                        <p class="text-lg font-extrabold text-indigo-600 mb-4">R$ 189,90</p>
-                        <a href="https://meli.la/1RqzRZx" target="_blank" class="mt-auto block w-full bg-slate-900 text-white text-center font-bold py-3 rounded-xl hover:bg-indigo-600 transition-colors uppercase text-xs">Ver Oferta</a>
-                    </div>
-                </div>
-
-                <!-- Produto 2 -->
-                <div class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col group text-center">
-                    <div class="h-64 bg-slate-50 p-6 flex items-center justify-center">
-                        <img src="https://http2.mlstatic.com/D_Q_NP_2X_839006-MLA100007826225_122025-V.webp" class="max-h-full group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="font-bold text-slate-800 text-sm mb-2 h-10 overflow-hidden leading-tight">Samsung Galaxy S25 5G 256GB</h3>
-                        <p class="text-lg font-extrabold text-indigo-600 mb-4">R$ 3.589,00</p>
-                        <a href="https://meli.la/2rW3F7y" target="_blank" class="mt-auto block w-full bg-slate-900 text-white text-center font-bold py-3 rounded-xl hover:bg-indigo-600 transition-colors uppercase text-xs">Ver Oferta</a>
-                    </div>
-                </div>
-
-                <!-- Produto 3 -->
-                <div class="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col group text-center">
-                    <div class="h-64 bg-slate-50 p-6 flex items-center justify-center">
-                        <img src="https://http2.mlstatic.com/D_Q_NP_2X_908302-MLA99985086463_112025-V.webp" class="max-h-full group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="font-bold text-slate-800 text-sm mb-2 h-10 overflow-hidden leading-tight">Motorola Edge 60 Fusion 5G</h3>
-                        <p class="text-lg font-extrabold text-indigo-600 mb-4">R$ 1.799,00</p>
-                        <a href="https://meli.la/1btceMH" target="_blank" class="mt-auto block w-full bg-slate-900 text-white text-center font-bold py-3 rounded-xl hover:bg-indigo-600 transition-colors uppercase text-xs">Ver Oferta</a>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
-    <!-- Pop-up Modal -->
+    <!-- Pop-up Modal de Monetização -->
     <div id="productModal" class="fixed inset-0 z-[100] bg-slate-900/95 backdrop-blur-xl flex-col items-center justify-center p-6 text-center">
         <div class="max-w-md w-full bg-white rounded-3xl overflow-hidden shadow-2xl animate-slide-up relative">
             <div id="modalContent" class="p-8">
@@ -196,14 +149,14 @@
                 </a>
             </div>
 
-            <!-- Botão Fechar -->
+            <!-- Botão Fechar (Aparece após o timer) -->
             <button id="closeModalBtn" onclick="closeModal()" class="hidden absolute top-4 right-4 bg-slate-100 hover:bg-slate-200 text-slate-800 p-2 rounded-full transition-all">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
             
-            <!-- Contador -->
+            <!-- Contador Visual -->
             <div id="timerContainer" class="absolute top-4 right-4 bg-indigo-600 text-white h-10 w-10 flex items-center justify-center rounded-full font-black text-sm shadow-md">
                 <span id="countdown">10</span>
             </div>
@@ -215,6 +168,7 @@
     </footer>
 
     <script>
+        // Função principal do encurtador
         async function shortenUrl() {
             const longUrlInput = document.getElementById('longUrl');
             const slugInput = document.getElementById('customSlug');
@@ -239,7 +193,7 @@
                 if (response.ok) {
                     document.getElementById('shortUrl').value = data.trim();
                     openProductModal();
-                } else { alert("Slug em uso!"); }
+                } else { alert("Slug em uso ou erro na API!"); }
             } catch (e) { alert("Erro de conexão."); }
             finally {
                 btnText.classList.remove('opacity-0');
@@ -252,15 +206,17 @@
             const el = document.getElementById('shortUrl');
             el.select();
             navigator.clipboard.writeText(el.value);
-            alert('Copiado!');
+            alert('Link copiado com sucesso!');
         }
 
+        // Configuração dos produtos da vitrine
         const allProducts = [
-            { name: "Fone Bluetooth 5.4 Pro", link: "https://meli.la/1RqzRZx", img: "https://http2.mlstatic.com/D_Q_NP_2X_653869-MLA106986107684_022026-V.webp", price: "R$ 189,90" },
-            { name: "Samsung Galaxy S25 5G", link: "https://meli.la/2rW3F7y", img: "https://http2.mlstatic.com/D_Q_NP_2X_839006-MLA100007826225_122025-V.webp", price: "R$ 3.589,00" },
-            { name: "Motorola Edge 60 Fusion", link: "https://meli.la/1btceMH", img: "https://http2.mlstatic.com/D_Q_NP_2X_908302-MLA99985086463_112025-V.webp", price: "R$ 1.799,00" }
+            { name: "Fone Bluetooth 5.4 Pro", link: "https://meli.la/1RqzRZx", img: "https://http2.mlstatic.com/D_Q_NP_2X_653869-MLA106986107684_022026-V.webp", price: "R$ 49,72" },
+            { name: "Samsung Galaxy S25 5G", link: "https://meli.la/2rW3F7y", img: "https://http2.mlstatic.com/D_Q_NP_2X_839006-MLA100007826225_122025-V.webp", price: "R$ 5.999,00" },
+            { name: "Motorola Edge 60 Fusion", link: "https://meli.la/1btceMH", img: "https://http2.mlstatic.com/D_Q_NP_2X_908302-MLA99985086463_112025-V.webp", price: "R$ 2.069,10" }
         ];
 
+        // Lógica do Modal Pop-up
         function openProductModal() {
             const modal = document.getElementById('productModal');
             const timerText = document.getElementById('countdown');
@@ -275,10 +231,8 @@
 
             modal.classList.add('modal-active');
             
-            // DISPARA CONFETES
+            // Efeito de Confetes ao gerar link
             confetti({ particleCount: 160, spread: 80, origin: { y: 0.6 }, zIndex: 200 });
-            setTimeout(() => confetti({ particleCount: 80, angle: 60, spread: 55, origin: { x: 0 }, zIndex: 200 }), 300);
-            setTimeout(() => confetti({ particleCount: 80, angle: 120, spread: 55, origin: { x: 1 }, zIndex: 200 }), 600);
 
             let timeLeft = 10;
             timerText.innerText = timeLeft;
@@ -303,8 +257,10 @@
             resultArea.scrollIntoView({ behavior: 'smooth' });
         }
 
+        // Lógica do Banner Rotativo
         const highlightProducts = [
-            { name: "Samsung Galaxy S25 5G", link: "https://meli.la/2rW3F7y", img: "https://http2.mlstatic.com/D_Q_NP_2X_839006-MLA100007826225_122025-V.webp" }
+            { name: "Samsung Galaxy S25 5G", link: "https://meli.la/2rW3F7y", img: "https://http2.mlstatic.com/D_Q_NP_2X_839006-MLA100007826225_122025-V.webp" },
+            { name: "Motorola Edge 60 Fusion", link: "https://meli.la/1btceMH", img: "https://http2.mlstatic.com/D_Q_NP_2X_908302-MLA99985086463_112025-V.webp" }
         ];
 
         let currentIdx = 0;
@@ -315,7 +271,9 @@
             container.innerHTML = `
                 <div class="flex flex-col md:flex-row items-center justify-between w-full fade-in-right">
                     <div class="flex items-center space-x-4 mb-4 md:mb-0">
-                        <div class="bg-white rounded-xl p-1 h-14 w-14"><img src="${prod.img}" class="h-full w-full object-contain"></div>
+                        <div class="bg-white rounded-xl p-1 h-14 w-14">
+                            <img src="${prod.img}" class="h-full w-full object-contain">
+                        </div>
                         <div>
                             <p class="text-white font-extrabold text-lg md:text-xl leading-tight">${prod.name}</p>
                             <p class="text-indigo-200 text-xs font-bold uppercase tracking-widest italic">Destaque Formula APK</p>
